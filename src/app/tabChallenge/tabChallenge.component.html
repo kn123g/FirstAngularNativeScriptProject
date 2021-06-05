@@ -1,0 +1,10 @@
+<shared-actionbar iTitle="Tab Challenge" [showBackButton]="true"
+    [hasMenu]="true"></shared-actionbar>
+<TabView androidTabsPosition="bottom"
+    androidSelectedTabHighlightColor="#c80d5b" selectedTabTextColor="#c80d5b">
+    <page-router-outlet name="today" *tabItem="{title:'today Challenge'}">
+    </page-router-outlet>
+    <page-router-outlet name="currentchallenge"
+        *tabItem="{title:'Current Challenge'}">
+    </page-router-outlet>
+</TabView>

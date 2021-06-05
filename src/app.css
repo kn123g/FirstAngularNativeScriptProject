@@ -23,3 +23,23 @@ The following CSS rule changes the font size of all Buttons that have the
 Button.-primary {
   font-size: 18;
 }
+
+.btn {
+  font-size: 18;
+  width: 100%;
+  background-color:#c80d5b;
+  color:#ffffff;
+  border-radius: 20%;
+}
+
+.grid{
+background-color: #ffcccc;
+}
+
+.sideDrawer{
+  background-color: #ffffff;
+  flex-direction: "column";
+  align-content: center;
+  align-items: center;
+}
+

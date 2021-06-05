@@ -1,3 +1,24 @@
-<GridLayout>
-  <page-router-outlet></page-router-outlet>
-</GridLayout>
+    <!-- <GridLayout>
+    <page-router-outlet></page-router-outlet>
+</GridLayout> -->
+<RadSideDrawer>
+  <FlexboxLayout class="sideDrawer" tkDrawerContent>
+      <Button class="btn" text="Logout"
+      nsRouterLink="/" [clearHistory]="true"
+      (tap)="onLogout()" ></Button>
+  </FlexboxLayout>
+  <StackLayout tkMainContent>
+      <!-- <page-router-outlet actionBarVisibility="never"></page-router-outlet> -->
+      <page-router-outlet></page-router-outlet>
+  </StackLayout>
+</RadSideDrawer>
+<!-- <StackLayout class="grid">
+
+<Editchallenge (challenge)="currentChallengeChange($event)">
+
+</Editchallenge>
+<Viewchallenge [challengeValue]="currentChallenge">
+
+</Viewchallenge>
+
+</StackLayout> -->

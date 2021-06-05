@@ -1,0 +1,9 @@
+<shared-actionbar iTitle="Challengee" [showBackButton]="shouldShowBackButton"
+    [hasMenu]="true"></shared-actionbar>
+<StackLayout>
+    <Label class="txt" text="Current Challenge"></Label>
+    <!-- [nsRouterLink]="['/tabChallenge',{outlets:{ currentchallenge: ['editTChallenge'] } }]" -->
+    <!--clearHistory="false" pageTransition="slideLeft" -->
+    <Button class="btn" text="Current Challenge" (tap)="onBtnTap()">
+    </Button>
+</StackLayout>
