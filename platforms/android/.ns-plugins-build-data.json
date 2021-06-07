@@ -1,0 +1,14 @@
+{
+	"@nativescript/core": {
+		"D:\\Users\\ganeshk\\Documents\\NativescriptProjects\\FirstNativeScriptApp\\node_modules\\@nativescript\\core\\platforms\\android\\native-api-usage.json": "5be1b566fe22ce6c7ddbbb6a21dd5e316394d0cc",
+		"D:\\Users\\ganeshk\\Documents\\NativescriptProjects\\FirstNativeScriptApp\\node_modules\\@nativescript\\core\\platforms\\android\\widgets-release.aar": "3bdca13d51bb0e943087239d9c78d013e11eadbe"
+	},
+	"nativescript-ui-sidedrawer": {
+		"D:\\Users\\ganeshk\\Documents\\NativescriptProjects\\FirstNativeScriptApp\\node_modules\\nativescript-ui-sidedrawer\\platforms\\android\\TNSSideDrawer-release.aar": "ae03340e741bdf430de4849d4dd117bf07197851",
+		"D:\\Users\\ganeshk\\Documents\\NativescriptProjects\\FirstNativeScriptApp\\node_modules\\nativescript-ui-sidedrawer\\platforms\\android\\typings\\sidedrawer.d.ts": "8256a2295125597755fe6a6faee866b0750e65f2"
+	},
+	"nativescript-ui-core": {
+		"D:\\Users\\ganeshk\\Documents\\NativescriptProjects\\FirstNativeScriptApp\\node_modules\\nativescript-ui-core\\platforms\\android\\typings\\core.d.ts": "5c032652edfa1719ef8c8190fc0f66d3b1c313c2",
+		"D:\\Users\\ganeshk\\Documents\\NativescriptProjects\\FirstNativeScriptApp\\node_modules\\nativescript-ui-core\\platforms\\android\\TNSCore-release.aar": "0e2fe0b867821ad56b8f0b9c8ac4c90f4c399e3c"
+	}
+}

@@ -1,0 +1,26 @@
+[
+    {
+        "name": "@nativescript/angular",
+        "directory": "..\\..\\node_modules\\@nativescript\\angular"
+    },
+    {
+        "name": "@nativescript/core",
+        "directory": "..\\..\\node_modules\\@nativescript\\core"
+    },
+    {
+        "name": "@nativescript/theme",
+        "directory": "..\\..\\node_modules\\@nativescript\\theme"
+    },
+    {
+        "name": "nativescript-ui-sidedrawer",
+        "directory": "..\\..\\node_modules\\nativescript-ui-sidedrawer"
+    },
+    {
+        "name": "nativescript-intl",
+        "directory": "..\\..\\node_modules\\nativescript-intl"
+    },
+    {
+        "name": "nativescript-ui-core",
+        "directory": "..\\..\\node_modules\\nativescript-ui-core"
+    }
+]

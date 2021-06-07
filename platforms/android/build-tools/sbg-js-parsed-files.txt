@@ -1,0 +1,3 @@
+D:\Users\ganeshk\Documents\NativescriptProjects\FirstNativeScriptApp\platforms\android\app\src\main\assets\app\bundle.js
+D:\Users\ganeshk\Documents\NativescriptProjects\FirstNativeScriptApp\platforms\android\app\src\main\assets\app\runtime.js
+D:\Users\ganeshk\Documents\NativescriptProjects\FirstNativeScriptApp\platforms\android\app\src\main\assets\app\vendor.js
