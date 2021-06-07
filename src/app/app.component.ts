@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit, ChangeDetectorRef }
+import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit, ChangeDetectorRef, ViewContainerRef }
     from '@angular/core';
 import { Subscription } from 'rxjs';
 import { UIService } from './shared/ui/ui.service';
@@ -17,7 +17,8 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   private drawerSub: Subscription;
   private drawer: RadSideDrawer;
   constructor(private uiService: UIService,
-      private changeDetect: ChangeDetectorRef) {
+      private changeDetect: ChangeDetectorRef,
+      private viewRef : ViewContainerRef) {
 
   }
   currentChallengeChange(input: string) {
@@ -33,6 +34,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
               this.drawer.toggleDrawerState();
           }
       });
+      this.uiService.setRootViewRef(this.viewRef);
   }
   ngAfterViewInit() {
       this.drawer = this.sideDrawerComponent.sideDrawer;

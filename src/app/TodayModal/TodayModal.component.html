@@ -1,0 +1,7 @@
+<FlexBoxLayout class="flex">
+    <Button class="btn" text="Completed" (tap)="onBtnClick('completed')">
+    </Button>
+    <Button class="btn" text="Failed" (tap)="onBtnClick('Failed')">
+    </Button>
+    <label class="lbl" [text]="modalDate | date"></label>
+</FlexBoxLayout>

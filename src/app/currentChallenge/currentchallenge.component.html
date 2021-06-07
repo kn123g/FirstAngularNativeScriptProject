@@ -1,9 +1,20 @@
-<shared-actionbar iTitle="Challengee" [showBackButton]="shouldShowBackButton"
-    [hasMenu]="true"></shared-actionbar>
+<shared-actionbar iTitle="Current Challenge"
+    [showBackButton]="shouldShowBackButton" [hasMenu]="true">
+    <ActionItem ios.position="right" android.position="actionBar"
+        nsRouterLink="/challenges/edit" pageTransition="slideLeft"
+        clearHistory="false">
+        <Label text="EDIT"> </Label>
+    </ActionItem>
+    <ActionItem ios.position="right" android.position="actionBar"
+        nsRouterLink="/challenges/replace" pageTransition="slideLeft"
+        clearHistory="false">
+        <Label text="REPLACE"> </Label>
+    </ActionItem>
+</shared-actionbar>
 <StackLayout>
-    <Label class="txt" text="Current Challenge"></Label>
+    <!-- <Label class="txt" text="Current Challenge"></Label> -->
     <!-- [nsRouterLink]="['/tabChallenge',{outlets:{ currentchallenge: ['editTChallenge'] } }]" -->
     <!--clearHistory="false" pageTransition="slideLeft" -->
-    <Button class="btn" text="Current Challenge" (tap)="onBtnTap()">
-    </Button>
+    <Label class="lbl" text="Status Change" (tap)="onStatusChange()">
+    </Label>
 </StackLayout>

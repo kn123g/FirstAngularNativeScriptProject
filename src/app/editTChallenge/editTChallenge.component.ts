@@ -11,6 +11,7 @@ import{PageRoute} from "@nativescript/angular";
 })
 export class EdittchallengeComponent implements OnInit {
 	shouldShowBackButton : boolean= false;
+  isCreating : boolean = true;
 	constructor(private active: ActivatedRoute, private router: RouterExtensions,private pageRoute :PageRoute) {
 
 	}
@@ -22,7 +23,12 @@ export class EdittchallengeComponent implements OnInit {
 		}
     this.pageRoute.activatedRoute.subscribe(activatedroute=>{
       activatedroute.paramMap.subscribe(params => {
-        console.log(params.get('mode'));
+        if(!params.get('mode')){
+          this. isCreating  = true;
+        }
+        else{
+          this.isCreating = params.get('mode') !== 'edit';
+        }
       });
     });
 

@@ -1,4 +1,4 @@
-<shared-actionbar iTitle="Edit Challenge" [showBackButton]="true"
+<shared-actionbar [iTitle]="isCreating ? 'Replace Challengee' : 'Edit Challenge'" [showBackButton]="true"
     [hasMenu]="true"></shared-actionbar>
 <StackLayout>
     <TextField class="txt" hint="Enter challenge...">
