@@ -1,0 +1,6 @@
+
+<FlexboxLayout>
+    <Button class="btn btn-success btn-rounded-lg" text="Completed" (tap)="onActionTap('complete')"></Button>
+    <Button class="btn btn-fail btn-rounded-lg" text="Failed" (tap)="onActionTap('fail')"></Button>
+    <Button class="btn btn-flat" (tap)="onActionTap('cancel')" [text]="cancelReset"></Button>
+</FlexboxLayout>

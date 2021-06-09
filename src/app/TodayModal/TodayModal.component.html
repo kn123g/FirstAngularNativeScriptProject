@@ -1,7 +1,5 @@
 <FlexBoxLayout class="flex">
-    <Button class="btn" text="Completed" (tap)="onBtnClick('completed')">
-    </Button>
-    <Button class="btn" text="Failed" (tap)="onBtnClick('Failed')">
-    </Button>
+    <challenge-action (actionEmitter)="onActionTap($event)" cancelReset="Reset"></challenge-action>
     <label class="lbl" [text]="modalDate | date"></label>
 </FlexBoxLayout>
+

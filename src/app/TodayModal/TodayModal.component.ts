@@ -16,7 +16,7 @@ export class TodayModalComponent implements OnInit {
 		console.log(this.modalParams.context.date);
 		this.modalDate = (this.modalParams.context as { date: Date }).date;
 	}
-	onBtnClick(btnValue: string): void {
+	onActionTap(btnValue: string): void {
 		this.modalParams.closeCallback(btnValue);
 	}
 }

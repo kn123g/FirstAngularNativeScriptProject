@@ -1,15 +1,14 @@
 
 .btn{
-	background: #c80d5b;
 	border-radius: 30%;
 	width: 40%;
-	color: white;
 	margin: 15 5 20 0;
 }
 .flex{
     flex-direction: column;
 	justify-content: center;
     -ms-flex-align: center;
+	background: white;
 }
 .lbl{
 	text-align: center;

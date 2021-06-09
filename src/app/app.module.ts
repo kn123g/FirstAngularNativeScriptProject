@@ -16,10 +16,11 @@ import { TabchallengeComponent } from "./tabChallenge/tabChallenge.component";
 import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angular";
 import { CurrentchallengeComponent } from "./currentChallenge/currentchallenge.component"
 import {TodayModalComponent} from "./TodayModal/TodayModal.component";
+import{ChallangeActionComponent} from "./challengeAction/challenge.action.component";
 @NgModule({
     bootstrap: [AppComponent],
     imports: [NativeScriptModule, AppRoutingModule, NativeScriptFormsModule, NativeScriptCommonModule, NativeScriptUISideDrawerModule],
-    declarations: [AppComponent, AuthComponent, TabchallengeComponent, TodayComponent, EdittchallengeComponent, ActionbarComponent,
+    declarations: [AppComponent,ChallangeActionComponent, AuthComponent, TabchallengeComponent, TodayComponent, EdittchallengeComponent, ActionbarComponent,
       EditchallengeComponent, ViewchallengeComponent, CurrentchallengeComponent,TodayModalComponent],
     providers: [],
     schemas: [NO_ERRORS_SCHEMA],

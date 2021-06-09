@@ -3,18 +3,36 @@
     <ActionItem ios.position="right" android.position="actionBar"
         nsRouterLink="/challenges/edit" pageTransition="slideLeft"
         clearHistory="false">
-        <Label text="EDIT"> </Label>
+        <!-- text="&#xf044;" -->
+        <Label  text="\uf293" ios:class="fa p-5" android:class="fa p-10" android:fontSize="20"> </Label>
     </ActionItem>
     <ActionItem ios.position="right" android.position="actionBar"
         nsRouterLink="/challenges/replace" pageTransition="slideLeft"
         clearHistory="false">
-        <Label text="REPLACE"> </Label>
+        <!-- text="&#xf0fe;" -->
+        <Label text="\uf293" ios:class="fa p-5" android:class="fa p-10" android:fontSize="20"> </Label>
     </ActionItem>
 </shared-actionbar>
-<StackLayout>
+<ScrollView>
+<FlexboxLayout class="todayflex">
+    <StackLayout>
     <!-- <Label class="txt" text="Current Challenge"></Label> -->
     <!-- [nsRouterLink]="['/tabChallenge',{outlets:{ currentchallenge: ['editTChallenge'] } }]" -->
     <!--clearHistory="false" pageTransition="slideLeft" -->
-    <Label class="lbl" text="Status Change" (tap)="onStatusChange()">
+    <Label class="h1 text-center" text="Status Change" text="Take walk every day" (tap)="onStatusChange()">
     </Label>
-</StackLayout>
+    <Label class="body text-center" text="Status Change" text="walk atleast 20mins every of week">
+    </Label>
+    </StackLayout>
+
+<GridLayout rows="auto,*,*,*,*,*"  columns="*,*,*,*,*,*,*" horizontalAlignment="center" verticalAlignment="center">
+    <label class="text-center week-day-label" *ngFor="let weekDay of weekDays;let i=index;" [text]="weekDay" row='0' [col]="i"></label>
+    <FlexboxLayout class="day not-settable" *ngFor="let day of days;let i=index;"
+    [row]="getRow(i,day)" [col]="day.dayInWeek"
+    (tap)="onStatusChange()"
+    >
+    <label  class="text-center"  [text]="day.dayInMonth"></label>
+    </FlexboxLayout>
+</GridLayout>
+</FlexboxLayout>
+</ScrollView>

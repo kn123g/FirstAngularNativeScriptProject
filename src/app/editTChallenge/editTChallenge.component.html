@@ -1,8 +1,17 @@
 <shared-actionbar [iTitle]="isCreating ? 'Replace Challengee' : 'Edit Challenge'" [showBackButton]="true"
     [hasMenu]="true"></shared-actionbar>
-<StackLayout>
-    <TextField class="txt" hint="Enter challenge...">
+<FlexboxLayout class="form">
+<StackLayout class="input-field">
+    <label class="label" text="Title"></label>
+    <TextField  class="input" hint="Enter challenge...">
     </TextField>
-    <Button class="btn" text="Submit">
-    </Button>
 </StackLayout>
+<StackLayout class="input-field">
+    <label class="label" text="Title"></label>
+    <TextField  class="input" hint="Enter challenge...">
+    </TextField>
+</StackLayout>
+<stackLayout class="input-field">
+    <Button class="btn btn-primary" text ="Save"></Button>
+</stackLayout>
+</FlexboxLayout>

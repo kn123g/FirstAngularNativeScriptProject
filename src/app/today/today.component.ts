@@ -6,7 +6,7 @@ import { ActivatedRoute } from "@angular/router";
 	selector: "Today",
 	moduleId: module.id,
 	templateUrl: "./today.component.html",
-	styleUrls: ['./today.component.css']
+	styleUrls: ['./today.component.scss']
 })
 
 export class TodayComponent implements OnInit {
@@ -19,7 +19,7 @@ export class TodayComponent implements OnInit {
 		}
 
 	}
-	onBtnTap() {
-
+	onActionTap(action : 'complete' | 'fail' | 'cancel') {
+    console.log(action)
 	}
 }

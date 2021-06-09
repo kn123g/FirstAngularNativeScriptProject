@@ -1,0 +1,66 @@
+// @import '@nativescript/theme/css/core.css';
+// @import '@nativescript/theme/css/default.css';
+@import '~nativescript-theme-core/scss/light';
+@import './themes/colors';
+@import '~nativescript-theme-core/scss/index';
+ActionBar{
+  background: $primary;
+  color: #ccc;
+}
+.sideDrawer{
+  background-color: #ffffff;
+  flex-direction: "column";
+  align-content: center;
+  align-items: center;
+}
+.flex{
+	border-color: black;
+}
+  .btn {
+    font-size: 18;
+  }
+  .btn-flat{
+    background: transparent;
+    border-color: transparent;
+    box-shadow: transparent;
+    border-width: 1;
+    color:$primary;
+
+  }
+h1{
+  color:$primary;
+  font-weight:bold;
+}
+  .input{
+    border-bottom-width: 2 ;
+    border-color: $primary ;
+    width: 100%;
+    .input-field{
+      width:80%;
+    }
+    .label{
+      font-style: bold;
+      color:$primary;
+    }
+  }
+
+  .sideDrawer{
+    flex-direction: "column";
+    align-content: center;
+    align-items: center;
+  }
+  .lbl{
+    color:$primary;
+  }
+  .txt{
+    color:$primary;
+    border-color:$primary;
+  }
+  .action-btn{
+    background-color: #c80d5b;
+  }
+
+
+  .fa{
+    font-family: FontAwesome,Font-Awesome;
+}

@@ -1,10 +1,12 @@
 <shared-actionbar iTitle="Today Challenge" [showBackButton]="shouldShowBackButton"
     [hasMenu]="true"></shared-actionbar>
-<StackLayout>
-    <Label class="txt" text="today's Challenge"></Label>
-    <!-- <Button class="btn" text="today Challengee1"
+ <!-- <StackLayout>
+   <Label class="txt" text="today's Challenge"></Label>
+    <Button class="btn" text="today Challengee1"
         [nsRouterLink]="['challenges/tabs',{outlets:{ today: ['editTodayChallenge'] } }]"
         clearHistory="false" pageTransition="slideLeft">
 
-    </Button> -->
-</StackLayout>
+    </Button>
+</StackLayout>-->
+<challenge-action (actionEmitter)="onActionTap($event)" cancelReset="Cancel"></challenge-action>
+

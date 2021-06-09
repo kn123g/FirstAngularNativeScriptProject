@@ -7,7 +7,7 @@ import{PageRoute} from "@nativescript/angular";
 	selector: "Edittchallenge",
 	moduleId: module.id,
 	templateUrl: "./editTChallenge.component.html",
-	styleUrls: ['./editTChallenge.component.css']
+	styleUrls: ['./editTChallenge.component.scss']
 })
 export class EdittchallengeComponent implements OnInit {
 	shouldShowBackButton : boolean= false;
