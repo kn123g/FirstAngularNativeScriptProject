@@ -48,6 +48,12 @@ h1{
     flex-direction: "column";
     align-content: center;
     align-items: center;
+    justify-content: center;
+    .btn{
+      width: 80%;
+      height: 45;
+      font-size: 24;
+    }
   }
   .lbl{
     color:$primary;
