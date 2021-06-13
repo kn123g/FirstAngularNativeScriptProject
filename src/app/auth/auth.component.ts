@@ -12,10 +12,13 @@ import { ActivatedRoute } from "@angular/router";
 export class AuthComponent implements OnInit {
 	onButtonTap(): void {
 		console.log("Button was pressed");
-		this.router.navigate(['challenges/tabs'],
-			{ clearHistory: true, transition: { name: 'slideLeft' } });
-	}
 
+	}
+  onSubmit(txtField,txtView){
+    this.router.navigate(['challenges/tabs'],
+			{ clearHistory: true, transition: { name: 'slideLeft' } });
+
+  }
 
 	constructor(private router: RouterExtensions, private page: Page, private active: ActivatedRoute) {
 	}

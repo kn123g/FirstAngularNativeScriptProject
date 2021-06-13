@@ -2,16 +2,26 @@
     [hasMenu]="true"></shared-actionbar>
 <FlexboxLayout class="form">
 <StackLayout class="input-field">
-    <label class="label" text="Title"></label>
-    <TextField  class="input" hint="Enter challenge...">
+    <label class="label" text="Title" [ngClass]="{invalid:((!txtField.valid) && txtField.touched)}"></label>
+    <TextField  class="input" hint="Enter challenge..."
+     required returnKeyType="next"
+     ngModel #txtField="ngModel"
+     >
     </TextField>
+    <label *ngIf="(!txtField.valid) && txtField.touched" text="please enter valid input"></label>
 </StackLayout>
 <StackLayout class="input-field">
-    <label class="label" text="Title"></label>
-    <TextField  class="input" hint="Enter challenge...">
-    </TextField>
+    <label class="label" text="Title"  [ngClass]="{invalid:((!txtView.valid) && txtView.touched )}"></label>
+    <TextView  class="input" hint="Enter challenge..."
+
+    required returnKeyType="done"
+    ngModel #txtView="ngModel">
+    </TextView>
+    <label *ngIf="(!txtView.valid) && txtView.touched" text="please enter valid input"></label>
 </StackLayout>
 <stackLayout class="input-field">
-    <Button class="btn btn-primary" text ="Save"></Button>
+    <Button class="btn btn-primary" text ="Save"
+     [isEnabled]="txtField.valid && txtView.valid"
+     (tap)="onSubmit(txtField.value,txtView.value)"></Button>
 </stackLayout>
 </FlexboxLayout>

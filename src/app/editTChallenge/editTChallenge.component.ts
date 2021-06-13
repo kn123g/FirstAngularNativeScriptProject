@@ -33,4 +33,10 @@ export class EdittchallengeComponent implements OnInit {
     });
 
 	}
+
+  onSubmit(txtField,txtView){
+    console.log(txtField,txtView);
+    this.router.backToPreviousPage();
+
+  }
 }

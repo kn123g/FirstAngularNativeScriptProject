@@ -31,18 +31,25 @@ h1{
   color:$primary;
   font-weight:bold;
 }
+.form{
   .input{
     border-bottom-width: 2 ;
     border-color: $primary ;
     width: 100%;
-    .input-field{
-      width:80%;
-    }
-    .label{
-      font-style: bold;
-      color:$primary;
-    }
+
   }
+  .input-field{
+    width:80%;
+  }
+  .label{
+    font-style: bold;
+    color:$primary;
+  }
+  .label.invalid{
+    color: red;
+    }
+}
+
 
   .sideDrawer{
     flex-direction: "column";
@@ -69,4 +76,7 @@ h1{
 
   .fa{
     font-family: FontAwesome,Font-Awesome;
+}
+.ng-invalid.ng-touched{
+  border-bottom-color:red;
 }

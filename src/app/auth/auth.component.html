@@ -3,11 +3,37 @@
 
 <ScrollView class="page">
 	<StackLayout class="home-panel">
-		
+
 	</StackLayout>
 </ScrollView> -->
 <shared-actionbar iTitle="Login" [showBackButton]="false" [hasMenu]="false">
 </shared-actionbar>
-<StackLayout>
-    <Button class="btn" text="Auth" (tap)="onButtonTap()"></Button>
-</StackLayout>
+<StackLayout class="form">
+	<StackLayout class="input-field">
+		<label class="label" text="UserID" [ngClass]="{invalid:((!userId.valid) && userId.touched)}"></label>
+		<TextField  class="input" hint="Email"
+		 required returnKeyType="next"
+		 ngModel #userId="ngModel"
+		 keyboardType="email"
+		 [autocorrect]="false"
+		 autocapitalizationType="none">
+		</TextField>
+		<label *ngIf="(!userId.valid) && userId.touched" text="please enter valid email"></label>
+	</StackLayout>
+	<StackLayout class="input-field">
+		<label class="label" text="Password"  [ngClass]="{invalid:((!pwd.valid) && pwd.touched )}"></label>
+		<TextField  class="input" hint="Password must be 6 length"
+		[secure]="true"
+		[autocorrect]="false"
+		autocapitalizationType="none"
+		required returnKeyType="next"
+		ngModel #pwd="ngModel">
+		</TextField>
+		<label *ngIf="(!pwd.valid) && pwd.touched" text="please enter valid password"></label>
+	</StackLayout>
+	<StackLayout class="input-field">
+		<Button class="btn btn-primary" text ="Save"
+		 [isEnabled]="userId.valid && pwd.valid"
+		 (tap)="onSubmit(userId.value,pwd.value)"></Button>
+	</StackLayout>
+	</StackLayout>
