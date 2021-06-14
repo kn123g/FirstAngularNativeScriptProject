@@ -2,6 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { RouterExtensions } from "@nativescript/angular";
 import{PageRoute} from "@nativescript/angular";
+import {ChallengeService} from "../challenge/challenge.service";
+import {Subscription} from 'rxjs';
+import {Challenge} from "../challenge/challenge.model";
 
 @Component({
 	selector: "Edittchallenge",
@@ -12,7 +15,9 @@ import{PageRoute} from "@nativescript/angular";
 export class EdittchallengeComponent implements OnInit {
 	shouldShowBackButton : boolean= false;
   isCreating : boolean = true;
-	constructor(private active: ActivatedRoute, private router: RouterExtensions,private pageRoute :PageRoute) {
+	constructor(private active: ActivatedRoute,
+    private router: RouterExtensions,private pageRoute :PageRoute,
+    private challengeService: ChallengeService) {
 
 	}
 
@@ -36,6 +41,7 @@ export class EdittchallengeComponent implements OnInit {
 
   onSubmit(txtField,txtView){
     console.log(txtField,txtView);
+    this.challengeService.createNewChallenge(txtField,txtView);
     this.router.backToPreviousPage();
 
   }

@@ -6,34 +6,47 @@
 
 	</StackLayout>
 </ScrollView> -->
-<shared-actionbar iTitle="Login" [showBackButton]="false" [hasMenu]="false">
+<shared-actionbar [iTitle] ="isLogin ? 'Login' : 'Signup'"  [showBackButton]="false" [hasMenu]="false">
 </shared-actionbar>
-<StackLayout class="form">
+<StackLayout class="form" [formGroup]="form">
 	<StackLayout class="input-field">
-		<label class="label" text="UserID" [ngClass]="{invalid:((!userId.valid) && userId.touched)}"></label>
+		<label class="label" text="UserID" [ngClass]="{invalid: !userIdIsTrue }"></label>
 		<TextField  class="input" hint="Email"
 		 required returnKeyType="next"
-		 ngModel #userId="ngModel"
+		 formControlName="userId"
 		 keyboardType="email"
 		 [autocorrect]="false"
-		 autocapitalizationType="none">
+		 autocapitalizationType="none"
+		 #userEl>
 		</TextField>
-		<label *ngIf="(!userId.valid) && userId.touched" text="please enter valid email"></label>
+		<label *ngIf="!userIdIsTrue" text="please enter valid email"></label>
 	</StackLayout>
 	<StackLayout class="input-field">
-		<label class="label" text="Password"  [ngClass]="{invalid:((!pwd.valid) && pwd.touched )}"></label>
+		<label class="label" text="Password"  [ngClass]="{invalid:!passwordIsTrue}"></label>
 		<TextField  class="input" hint="Password must be 6 length"
 		[secure]="true"
 		[autocorrect]="false"
 		autocapitalizationType="none"
 		required returnKeyType="next"
-		ngModel #pwd="ngModel">
+		formControlName="pass"
+		#passEl
+		(returnPress) = "onDone()">
 		</TextField>
-		<label *ngIf="(!pwd.valid) && pwd.touched" text="please enter valid password"></label>
+		<label *ngIf="!passwordIsTrue" text="please enter valid password"></label>
 	</StackLayout>
+
 	<StackLayout class="input-field">
-		<Button class="btn btn-primary" text ="Save"
-		 [isEnabled]="userId.valid && pwd.valid"
-		 (tap)="onSubmit(userId.value,pwd.value)"></Button>
+		<Button class="btn btn-flat"  [text] ="isLogin ? 'Login' : 'Signup'"
+		 (tap)="onModeChange()"></Button>
+	</StackLayout>
+
+	<!-- (tap)="onSubmit(userId.value,pwd.value)"> -->
+	<StackLayout class="input-field">
+		<Button class="btn btn-primary"  [text] ="isLogin ? 'Login' : 'Signup'"
+		 [isEnabled]="form.valid"
+		 (tap)="onSubmit()"></Button>
+	</StackLayout>
+	<StackLayout >
+		<label [text]="temp"></label>
 	</StackLayout>
 	</StackLayout>

@@ -34,10 +34,17 @@ h1{
 .form{
   .input{
     border-bottom-width: 2 ;
-    border-color: $primary ;
+    border-bottom-color: $primary ;
     width: 100%;
-
+    color:black;
   }
+
+  .input.ng-invalid.ng-touched{
+  border-bottom-color:red;
+  color:red;
+  }
+
+
   .input-field{
     width:80%;
   }
@@ -77,6 +84,4 @@ h1{
   .fa{
     font-family: FontAwesome,Font-Awesome;
 }
-.ng-invalid.ng-touched{
-  border-bottom-color:red;
-}
+

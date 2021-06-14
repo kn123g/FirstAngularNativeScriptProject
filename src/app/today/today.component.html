@@ -8,5 +8,16 @@
 
     </Button>
 </StackLayout>-->
-<challenge-action (actionEmitter)="onActionTap($event)" cancelReset="Cancel"></challenge-action>
-
+<FlexboxLayout *ngIf="!currentDay" class="page">
+    <Label class="text-center nochallenge" text="No challenge found!"></Label>
+    <Button
+      class="btn btn-primary"
+      text="Create One!"
+      nsRouterLink="/challenges/replace"
+      pageTransition="slideLeft"
+    ></Button>
+  </FlexboxLayout>
+<FlexboxLayout *ngIf="currentDay" class="page">
+    <label class="h1" [text]="currentDay.date | date"></label>
+    <challenge-action (actionEmitter)="onActionTap($event)" cancelReset="Cancel"></challenge-action>
+</FlexboxLayout>

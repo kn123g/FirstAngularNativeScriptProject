@@ -14,22 +14,31 @@
 </shared-actionbar>
 <ScrollView>
 <FlexboxLayout class="todayflex">
-    <StackLayout>
+    <StackLayout *ngIf="!currentChallenge">
+        <Label class="text-center nochallenge" text="No challenge found!"></Label>
+        <Button
+          class="btn btn-primary"
+          text="Create One!"
+          nsRouterLink="/challenges/replace"
+          pageTransition="slideLeft"
+        ></Button>
+      </StackLayout>
+    <StackLayout *ngIf="currentChallenge">
     <!-- <Label class="txt" text="Current Challenge"></Label> -->
     <!-- [nsRouterLink]="['/tabChallenge',{outlets:{ currentchallenge: ['editTChallenge'] } }]" -->
     <!--clearHistory="false" pageTransition="slideLeft" -->
-    <Label class="h1 text-center" text="Status Change" text="Take walk every day" (tap)="onStatusChange()">
+    <Label class="h1 text-center" [text]="currentChallenge.title" text="Take walk every day" (tap)="onStatusChange()">
     </Label>
-    <Label class="body text-center" text="Status Change" text="walk atleast 20mins every of week">
+    <Label class="body text-center" [text]="currentChallenge.description" text="walk atleast 20mins every of week">
     </Label>
     </StackLayout>
 
-<GridLayout rows="auto,*,*,*,*,*"  columns="*,*,*,*,*,*,*" horizontalAlignment="center" verticalAlignment="center">
+<GridLayout rows="auto,*,*,*,*,*"  columns="*,*,*,*,*,*,*" *ngIf="currentChallenge"
+    horizontalAlignment="center" verticalAlignment="center">
     <label class="text-center week-day-label" *ngFor="let weekDay of weekDays;let i=index;" [text]="weekDay" row='0' [col]="i"></label>
-    <FlexboxLayout class="day not-settable" *ngFor="let day of days;let i=index;"
+    <FlexboxLayout class="day not-settable" *ngFor="let day of currentChallenge.days;let i=index;"
     [row]="getRow(i,day)" [col]="day.dayInWeek"
-    (tap)="onStatusChange()"
-    >
+    (tap)="onStatusChange()">
     <label  class="text-center"  [text]="day.dayInMonth"></label>
     </FlexboxLayout>
 </GridLayout>
