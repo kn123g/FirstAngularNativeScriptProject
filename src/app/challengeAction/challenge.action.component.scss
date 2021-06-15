@@ -15,13 +15,21 @@ FlexboxLayout{
 .btn-success{
 	background-color: $success;
 	border-color:$success;
+	background: $success;
+    box-shadow: $success;
 	color:$white;
+    border-width: 1;
 }
-
+.btn{
+	height:180px;
+}
 .btn-fail{
 	background-color: $fail;
 	border-color:$fail;
+	background: $fail;
+    box-shadow: $fail;
 	color:$white;
+    border-width: 1;
 }
 .txt{
 	padding: 0 0 0 0 ;
@@ -32,3 +40,23 @@ FlexboxLayout{
 	text-align: center;
 
 }
+.btn-alt{
+	font-size: 25;
+}
+
+
+.animate-button {
+	animation-name: slide-up;
+	animation-iteration-count: 1;
+	animation-duration: 0.8s;
+	animation-fill-mode: forwards;
+  }
+
+  @keyframes slide-up {
+	from {
+	  transform: translateY(30);
+	}
+	to {
+	  transform: translateY(5);
+	}
+  }

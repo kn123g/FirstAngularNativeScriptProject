@@ -18,6 +18,6 @@
     ></Button>
   </FlexboxLayout>
 <FlexboxLayout *ngIf="currentDay" class="page">
-    <label class="h1" [text]="currentDay.date | date"></label>
+    <label class="h1 text-center date-title" [text]="currentDay.date | date"></label>
     <challenge-action (actionEmitter)="onActionTap($event)" cancelReset="Cancel"></challenge-action>
 </FlexboxLayout>

@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { RouterExtensions } from '@nativescript/angular';
 import { ActivatedRoute } from "@angular/router";
 import { ChallengeService } from "../challenge/challenge.service";
-import { Day } from "../challenge/day.model";
+import { Day, DayStatus } from "../challenge/day.model";
 import { Subscription } from "rxjs";
 
 @Component({
@@ -18,19 +18,20 @@ export class TodayComponent implements OnInit,OnDestroy {
   currentChallengeSub : Subscription;
   currentDay : Day;
 	constructor(private router: RouterExtensions, private active: ActivatedRoute,
-    private todayChallenge : ChallengeService) { }
+    private challengeService : ChallengeService) { }
 	ngOnInit(): void {
 		if (this.router.canGoBack()) {
 			this.shouldShowBackButton = true;
 		}
-    this.currentChallengeSub= this.todayChallenge.currentChallenge.subscribe(challenge=>{
+    this.currentChallengeSub= this.challengeService.currentChallenge.subscribe(challenge=>{
       if(challenge){
         this.currentDay = challenge.currentDay;
       }
     });
 
 	}
-	onActionTap(action : 'complete' | 'fail' | 'cancel') {
+	onActionTap(action : DayStatus) {
+    this.challengeService.updateDayStatus(this.currentDay.dayInMonth,action);
     console.log(action)
 	}
   ngOnDestroy(){

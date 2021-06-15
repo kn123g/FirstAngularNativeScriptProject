@@ -1,6 +1,20 @@
 .page{
 flex-direction: column;
-align-items: center;
 justify-content: center;
-}
+-ms-flex-align: center;
 
+}
+.date-title{
+    width:100%;
+}
+.btn{
+	border-radius: 30%;
+	margin: 15 5 20 0;
+    width:100%;
+}
+.flex{
+    flex-direction: column;
+	justify-content: center;
+    -ms-flex-align: center;
+	background: white;
+}

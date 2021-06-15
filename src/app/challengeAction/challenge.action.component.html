@@ -1,6 +1,15 @@
 
 <FlexboxLayout>
-    <Button class="btn btn-success btn-rounded-lg" text="Completed" (tap)="onActionTap('complete')"></Button>
-    <Button class="btn btn-fail btn-rounded-lg" text="Failed" (tap)="onActionTap('fail')"></Button>
+    <Button  text="Completed" *ngIf="action !== 'complete'" class="btn btn-success"
+     (tap)="onActionTap('complete')"></Button>
+    <StackLayout class="btn btn-success btn-rounded-lg"  *ngIf="action === 'complete'">
+        <Label class="fa btn-alt animate-button" text="&#xf00c;" horizontalAlignment="center"></Label>
+        <!-- &#xf00c; -->
+    </StackLayout>
+    <Button  text="Failed"  *ngIf="action !== 'fail'" class="btn btn-fail"
+    (tap)="onActionTap('fail')" ></Button>
+    <StackLayout  class="btn btn-fail btn-rounded-lg" *ngIf="action === 'fail'" >
+        <Label class="fa btn-alt animate-button" text="&#xf00d;" horizontalAlignment="center"></Label>
+    </StackLayout>
     <Button class="btn btn-flat" (tap)="onActionTap('cancel')" [text]="cancelReset"></Button>
 </FlexboxLayout>
