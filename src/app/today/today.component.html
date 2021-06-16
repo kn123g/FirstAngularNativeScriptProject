@@ -19,5 +19,7 @@
   </FlexboxLayout>
 <FlexboxLayout *ngIf="currentDay" class="page">
     <label class="h1 text-center date-title" [text]="currentDay.date | date"></label>
-    <challenge-action (actionEmitter)="onActionTap($event)" cancelReset="Cancel"></challenge-action>
+    <challenge-action (actionEmitter)="onActionTap($event)" cancelReset="Cancel"
+    [chosen]="getActionName()" [startDone]="getActionName() === 'complete' || getActionName() === 'fail' "
+    ></challenge-action>
 </FlexboxLayout>

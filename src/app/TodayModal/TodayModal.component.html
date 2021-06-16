@@ -1,5 +1,5 @@
 <FlexBoxLayout class="flex">
-    <challenge-action (actionEmitter)="onActionTap($event)" cancelReset="Reset"></challenge-action>
-    <label class="lbl" [text]="modalDate | date"></label>
+    <label class="h1 text-center" [text]="loadedDate | date"></label>
+    <challenge-action (actionEmitter)="onActionTap($event)" cancelReset="Reset" [chosen]="loadedStatus"></challenge-action>
 </FlexBoxLayout>
 

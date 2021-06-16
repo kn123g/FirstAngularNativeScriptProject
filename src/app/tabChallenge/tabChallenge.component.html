@@ -1,6 +1,6 @@
 <shared-actionbar iTitle="Tab Challenge" [showBackButton]="true"
     [hasMenu]="true"></shared-actionbar>
-<TabView androidTabsPosition="bottom"
+<TabView androidTabsPosition="bottom" *ngIf="!isLoading"
     androidSelectedTabHighlightColor="#c80d5b" selectedTabTextColor="#c80d5b">
     <page-router-outlet name="today" *tabItem="{title:'today Challenge',iconSource:'res://check'}">
     </page-router-outlet>
@@ -8,3 +8,6 @@
         *tabItem="{title:'Current Challenge',iconSource:'res://tropy'}">
     </page-router-outlet>
 </TabView>
+<FlexboxLayout justifyContent="center" alignItems="center" *ngIf="isLoading">
+    <ActivityIndicator [busy]="isLoading"></ActivityIndicator>
+</FlexboxLayout>

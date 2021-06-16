@@ -43,7 +43,12 @@ FlexboxLayout{
 .btn-alt{
 	font-size: 25;
 }
-
+.btn-success:disabled,
+.btn-fail:disabled{
+	background-color: #ccc;
+	border-color: #ccc;
+	color:#777777;
+}
 
 .animate-button {
 	animation-name: slide-up;

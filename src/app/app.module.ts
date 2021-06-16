@@ -1,8 +1,9 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core'
 import {
     NativeScriptModule, NativeScriptFormsModule,
-    NativeScriptCommonModule
-} from '@nativescript/angular'
+    NativeScriptCommonModule,
+    NativeScriptHttpClientModule
+} from '@nativescript/angular';
 import {ReactiveFormsModule} from "@angular/forms"
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
@@ -19,7 +20,7 @@ import {TodayModalComponent} from "./TodayModal/TodayModal.component";
 import{ChallangeActionComponent} from "./challengeAction/challenge.action.component";
 @NgModule({
     bootstrap: [AppComponent],
-    imports: [NativeScriptModule, AppRoutingModule, NativeScriptFormsModule,
+    imports: [NativeScriptModule, AppRoutingModule, NativeScriptFormsModule,NativeScriptHttpClientModule,
        NativeScriptCommonModule, NativeScriptUISideDrawerModule,ReactiveFormsModule],
     declarations: [AppComponent,ChallangeActionComponent, AuthComponent, TabchallengeComponent, TodayComponent, EdittchallengeComponent, ActionbarComponent,
       EditchallengeComponent, ViewchallengeComponent, CurrentchallengeComponent,TodayModalComponent],

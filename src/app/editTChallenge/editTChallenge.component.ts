@@ -4,6 +4,7 @@ import { RouterExtensions } from "@nativescript/angular";
 import{PageRoute} from "@nativescript/angular";
 import {ChallengeService} from "../challenge/challenge.service";
 import {Subscription} from 'rxjs';
+import {take} from 'rxjs/operators'
 import {Challenge} from "../challenge/challenge.model";
 
 @Component({
@@ -15,6 +16,8 @@ import {Challenge} from "../challenge/challenge.model";
 export class EdittchallengeComponent implements OnInit {
 	shouldShowBackButton : boolean= false;
   isCreating : boolean = true;
+  title : string = '';
+  description :string ='';
 	constructor(private active: ActivatedRoute,
     private router: RouterExtensions,private pageRoute :PageRoute,
     private challengeService: ChallengeService) {
@@ -34,15 +37,30 @@ export class EdittchallengeComponent implements OnInit {
         else{
           this.isCreating = params.get('mode') !== 'edit';
         }
+
+        if(!this.isCreating){
+          this.challengeService.currentChallenge.pipe(take(1)).subscribe(challenge => {
+            this.title=challenge.title;
+            this.description=challenge.description;
+
+          });
+        }
       });
     });
 
+
+
 	}
 
-  onSubmit(txtField,txtView){
-    console.log(txtField,txtView);
-    this.challengeService.createNewChallenge(txtField,txtView);
-    this.router.backToPreviousPage();
+  onSubmit(title,description){
+    console.log(title,description);
+    if(!this.isCreating){
+      this.challengeService.updateChallenge(title,description);
+    }
+    else{
+      this.challengeService.createNewChallenge(title,description);
 
+    }
+    this.router.backToPreviousPage();
   }
 }

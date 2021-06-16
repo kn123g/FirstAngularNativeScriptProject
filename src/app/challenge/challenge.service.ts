@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
+import{HttpClient} from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { take ,tap } from 'rxjs/operators';
 import { Challenge } from './challenge.model';
-import {DayStatus} from "./day.model";
+import {Day, DayStatus} from "./day.model";
 
 @Injectable({ providedIn: 'root' })
 export class ChallengeService {
   private _currentChallenge = new BehaviorSubject<Challenge>(null);
-
+  constructor(private http : HttpClient){}
   get currentChallenge() {
       return this._currentChallenge.asObservable();
   }
@@ -20,7 +21,40 @@ export class ChallengeService {
       new Date().getMonth()
     );
     // Save it to server
-    this._currentChallenge.next(newChallenge);
+    this.http.put('https://ns-first-app-default-rtdb.firebaseio.com/challenge.json',newChallenge)
+    .subscribe(result => {
+      this._currentChallenge.next(newChallenge);
+    });
+
+  }
+  fetchCurrentChallenge(){
+    return this.http.get<{
+      title:string;
+      description :string;
+      month:number;
+      year : number;
+      _days : Day[];
+    }>('https://ns-first-app-default-rtdb.firebaseio.com/challenge.json').pipe(
+      tap(resData => {
+        if (resData) {
+          const loadedChallenge = new Challenge(
+            resData.title,
+            resData.description,
+            resData.year,
+            resData.month,
+            resData._days
+          );
+          this._currentChallenge.next(loadedChallenge);
+        }
+      })
+    );
+  }
+  updateChallenge(title:string , description :string){
+    this._currentChallenge.pipe(take(1)).subscribe(challenge=>{
+      const updateChallenge = new Challenge(title,description,challenge.year,challenge.month,challenge.days);
+      this.saveToServer(updateChallenge);
+      this._currentChallenge.next(updateChallenge);
+    });
   }
 
 
@@ -37,4 +71,12 @@ export class ChallengeService {
       // Save this to a server
     });
   }
+  private saveToServer(challenge: Challenge) {
+    this.http
+      .put('https://ns-first-app-default-rtdb.firebaseio.com/challenge.json', challenge)
+      .subscribe(res => {
+        console.log(res);
+      });
+  }
+
 }

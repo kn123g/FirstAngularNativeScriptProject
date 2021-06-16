@@ -7,6 +7,7 @@ import {ChallengeService} from "../challenge/challenge.service";
 import {Subscription} from 'rxjs';
 
 import {Challenge} from "../challenge/challenge.model";
+import { Day, DayStatus } from "../challenge/day.model";
 
 
 
@@ -55,14 +56,25 @@ export class CurrentchallengeComponent implements OnInit,OnDestroy {
 		], { clearHistory: false, transition: { name: 'slideLeft' } });
 	}
 
-  onStatusChange(){
+  onStatusChange(day :Day){
+    if(! this.getSettable(day.dayInMonth)){
+      return ;
+    }
     this.modalDialog.showModal(TodayModalComponent,{fullscreen:true,
-      viewContainerRef: this.uiService.getRootViewRef() ? this.uiService.getRootViewRef() : this.viewRef,context:{date:new Date()}
-		}).then((action : string) => {
+      viewContainerRef: this.uiService.getRootViewRef() ? this.uiService.getRootViewRef() : this.viewRef,
+      context:{date: day.date,status : day.status}
+		}).then((action : DayStatus) => {
+      if(action === DayStatus.Open){
+        return ;
+      }
+      this.challengeService.updateDayStatus(day.dayInMonth,action);
 			console.log(action);
 		});
     //this.viewRef -> gets view of current component and load Dialog on top of it
 
+  }
+  getSettable(dayInMonth : number){
+    return dayInMonth <= new Date().getDate();
   }
   ngOnDestroy() {
     if (this.curChallengeSub) {

@@ -5,7 +5,8 @@
     <label class="label" text="Title" [ngClass]="{invalid:((!txtField.valid) && txtField.touched)}"></label>
     <TextField  class="input" hint="Enter challenge..."
      required returnKeyType="next"
-     ngModel #txtField="ngModel"
+     #txtField="ngModel"
+     [(ngModel)]="title"
      >
     </TextField>
     <label *ngIf="(!txtField.valid) && txtField.touched" text="please enter valid input"></label>
@@ -15,7 +16,7 @@
     <TextView  class="input" hint="Enter challenge..."
 
     required returnKeyType="done"
-    ngModel #txtView="ngModel">
+    [(ngModel)]="description" #txtView="ngModel">
     </TextView>
     <label *ngIf="(!txtView.valid) && txtView.touched" text="please enter valid input"></label>
 </StackLayout>
