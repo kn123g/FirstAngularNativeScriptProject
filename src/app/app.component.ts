@@ -5,6 +5,8 @@ import { UIService } from './shared/ui/ui.service';
 import { RadSideDrawerComponent }
     from "nativescript-ui-sidedrawer/angular"
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
+import {AuthService} from './auth/auth.service';
+import {RouterExtensions} from "@nativescript/angular";
 
 @Component({
   selector: 'ns-app',
@@ -18,7 +20,9 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   private drawer: RadSideDrawer;
   constructor(private uiService: UIService,
       private changeDetect: ChangeDetectorRef,
-      private viewRef : ViewContainerRef) {
+      private viewRef : ViewContainerRef,
+      private authService : AuthService,
+      private router : RouterExtensions) {
 
   }
   currentChallengeChange(input: string) {
@@ -26,6 +30,8 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
       console.log("Pushed value" + input);
   }
   onLogout() {
+      this.authService.logout();
+      //this.router.navigate(['/'],{clearHistory:true});
       this.uiService.toggleDrawer();
   }
   ngOnInit() {
@@ -35,6 +41,9 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
           }
       });
       this.uiService.setRootViewRef(this.viewRef);
+      this.authService.autoLogin().subscribe(success => {
+        console.log(success);
+      });
   }
   ngAfterViewInit() {
       this.drawer = this.sideDrawerComponent.sideDrawer;

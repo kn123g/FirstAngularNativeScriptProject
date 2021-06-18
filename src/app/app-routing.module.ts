@@ -7,6 +7,7 @@ import { TodayComponent } from "./today/today.component";
 import { EdittchallengeComponent } from "./editTChallenge/editTChallenge.component";
 import { TabchallengeComponent } from "./tabChallenge/tabChallenge.component";
 import { CurrentchallengeComponent } from "./currentChallenge/currentchallenge.component"
+import {AuthGuard} from "./auth/auth.guard";
 const routes: Routes = [
     { path: '', redirectTo: '/auth', pathMatch: 'full' },
     {
@@ -16,7 +17,7 @@ const routes: Routes = [
         path: 'challenges',
         children: [
             {
-                path: 'tabs', component: TabchallengeComponent,
+                path: 'tabs', component: TabchallengeComponent,canLoad :[ AuthGuard],
                 children: [
                     { path: 'today', component: TodayComponent, outlet: 'today' },
                     { path: 'editTodayChallenge', component: EdittchallengeComponent, outlet: 'today' },

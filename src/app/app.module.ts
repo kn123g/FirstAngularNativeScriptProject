@@ -18,13 +18,14 @@ import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angul
 import { CurrentchallengeComponent } from "./currentChallenge/currentchallenge.component"
 import {TodayModalComponent} from "./TodayModal/TodayModal.component";
 import{ChallangeActionComponent} from "./challengeAction/challenge.action.component";
+import { AuthGuard } from './auth/auth.guard';
 @NgModule({
     bootstrap: [AppComponent],
     imports: [NativeScriptModule, AppRoutingModule, NativeScriptFormsModule,NativeScriptHttpClientModule,
        NativeScriptCommonModule, NativeScriptUISideDrawerModule,ReactiveFormsModule],
     declarations: [AppComponent,ChallangeActionComponent, AuthComponent, TabchallengeComponent, TodayComponent, EdittchallengeComponent, ActionbarComponent,
       EditchallengeComponent, ViewchallengeComponent, CurrentchallengeComponent,TodayModalComponent],
-    providers: [],
+    providers: [AuthGuard],
     schemas: [NO_ERRORS_SCHEMA],
     entryComponents:[TodayModalComponent]
 })

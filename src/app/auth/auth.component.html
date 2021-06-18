@@ -44,8 +44,9 @@
 	<StackLayout class="input-field">
 		<Button class="btn btn-primary"  [text] ="isLogin ? 'Login' : 'Signup'"
 		 [isEnabled]="form.valid"
-		 (tap)="onSubmit()"></Button>
+		 (tap)="onSubmit()" *ngIf="!isLoading"></Button>
 	</StackLayout>
+	<ActivityIndicator [busy]="isLoading"></ActivityIndicator>
 	<StackLayout >
 		<label [text]="temp"></label>
 	</StackLayout>

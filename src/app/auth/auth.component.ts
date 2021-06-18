@@ -3,6 +3,7 @@ import { RouterExtensions } from '@nativescript/angular';
 import { Page, TextField, View } from "@nativescript/core";
 import { ActivatedRoute } from "@angular/router";
 import {FormControl,FormControlName,FormGroup,Validators} from "@angular/forms";
+import { AuthService} from './auth.service';
 
 @Component({
 	selector: "Auth",
@@ -18,7 +19,11 @@ export class AuthComponent implements OnInit {
   userIdIsTrue = true;
   passwordIsTrue =true;
   isLogin = true;
-  temp: string;
+  temp: string ='no error';
+  isLoading = false;
+  constructor(private router: RouterExtensions, private page: Page,
+    private active: ActivatedRoute,private authService :AuthService) {
+	}
 	onButtonTap(): void {
 		console.log("Button was pressed");
 
@@ -35,20 +40,48 @@ export class AuthComponent implements OnInit {
     if(!this.form.valid){
       return ;
     }
+    this.isLoading = true;
     if(this.isLogin){
       console.log("logging in")
-    }else{
-      console.log("Signing up")
-    }
-    this.temp= this.form.get('userId').value + '  ' +
-    this.form.get('pass').value;
-
-    this.router.navigate(['challenges/tabs'],
+      this.authService.login(this.form.get('userId').value,this.form.get('pass').value)
+      .subscribe(resData => {
+        console.log(resData);
+        this.temp = 'success';
+        this.isLoading = false;
+        this.router.navigate(['challenges/tabs'],
 			{ clearHistory: true, transition: { name: 'slideLeft' } });
 
     this.form.reset();
     this.userIdIsTrue = true;
     this.passwordIsTrue =true;
+      },err =>{
+        this.temp = "error"
+        this.isLoading = false;
+      });
+    }else{
+      console.log("Signing up")
+
+    this.authService.signUp(this.form.get('userId').value,this.form.get('pass').value)
+      .subscribe(resData => {
+        console.log(resData);
+        this.temp = 'success';
+        this.isLoading = false;
+        this.router.navigate(['challenges/tabs'],
+			{ clearHistory: true, transition: { name: 'slideLeft' } });
+
+    this.form.reset();
+    this.userIdIsTrue = true;
+    this.passwordIsTrue =true;
+      },err =>{
+        this.temp = "error"
+        this.isLoading = false;
+      });
+
+
+    }
+   // this.temp= this.form.get('userId').value + '  ' + this.form.get('pass').value;
+
+
 
   }
 
@@ -59,8 +92,7 @@ export class AuthComponent implements OnInit {
     this.passEl.nativeElement.dismissSoftInput();
   }
 
-	constructor(private router: RouterExtensions, private page: Page, private active: ActivatedRoute) {
-	}
+
 
 	ngOnInit(): void {
 		//this.page.actionBarHidden = true;

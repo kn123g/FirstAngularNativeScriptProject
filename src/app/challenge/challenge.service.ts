@@ -1,14 +1,22 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import{HttpClient} from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
-import { take ,tap } from 'rxjs/operators';
+import { BehaviorSubject,of, Subscription } from 'rxjs';
+import { take ,tap , switchMap} from 'rxjs/operators';
 import { Challenge } from './challenge.model';
 import {Day, DayStatus} from "./day.model";
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({ providedIn: 'root' })
-export class ChallengeService {
+export class ChallengeService implements OnDestroy{
   private _currentChallenge = new BehaviorSubject<Challenge>(null);
-  constructor(private http : HttpClient){}
+  private userSub : Subscription;
+  constructor(private http : HttpClient,private authService :AuthService){
+    this.userSub = this.authService.user.subscribe(user => {
+      if(user == null){
+        this.cleanUpChallenge();
+      }
+      });
+  }
   get currentChallenge() {
       return this._currentChallenge.asObservable();
   }
@@ -21,20 +29,28 @@ export class ChallengeService {
       new Date().getMonth()
     );
     // Save it to server
-    this.http.put('https://ns-first-app-default-rtdb.firebaseio.com/challenge.json',newChallenge)
-    .subscribe(result => {
-      this._currentChallenge.next(newChallenge);
-    });
+    this.saveToServer(newChallenge);
 
   }
   fetchCurrentChallenge(){
-    return this.http.get<{
-      title:string;
-      description :string;
-      month:number;
-      year : number;
-      _days : Day[];
-    }>('https://ns-first-app-default-rtdb.firebaseio.com/challenge.json').pipe(
+    return this.authService.user.pipe(
+      take(1),
+      switchMap(currentUser => {
+        if(!currentUser || !currentUser.isAuth){
+          return of(null);
+        }
+        return this.http.get<{
+          title: string;
+          description: string;
+          month: number;
+          year: number;
+          _days: Day[];
+        }>(
+          `https://ns-first-app-default-rtdb.firebaseio.com/challenge/${currentUser.id}.json?auth=${
+            currentUser.token
+          }`
+        );
+      }),
       tap(resData => {
         if (resData) {
           const loadedChallenge = new Challenge(
@@ -69,14 +85,41 @@ export class ChallengeService {
       challenge.days[dayIndex].status = status;
       this._currentChallenge.next(challenge);
       // Save this to a server
+      this.saveToServer(challenge);
     });
   }
   private saveToServer(challenge: Challenge) {
-    this.http
-      .put('https://ns-first-app-default-rtdb.firebaseio.com/challenge.json', challenge)
-      .subscribe(res => {
-        console.log(res);
-      });
+
+    this.authService.user.pipe(
+      take(1),
+      switchMap(currentUser =>{
+        if(!currentUser || !currentUser.isAuth){
+          return of(null);
+        }
+        return this.http.put<{
+          title: string;
+          description: string;
+          month: number;
+          year: number;
+          _days: Day[];
+        }>(
+          `https://ns-first-app-default-rtdb.firebaseio.com/challenge/${currentUser.id}.json?auth=${
+            currentUser.token
+          }`,challenge
+        );
+      })
+      ).subscribe(()=>{
+        this._currentChallenge.next(challenge);
+    });
+
+  }
+
+  cleanUpChallenge (){
+    this._currentChallenge.next(null);
+  }
+
+  ngOnDestroy(){
+    this.userSub.unsubscribe();
   }
 
 }
