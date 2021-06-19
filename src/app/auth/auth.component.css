@@ -15,8 +15,16 @@
 
 }
 
-.btn{
+.btn:disabled{
 	background: grey;
+	border-radius: 30%;
+	width: 40%;
+	color: white;
+	margin: 15 5 20 0;
+}
+
+.btn{
+	background: rgb(85, 12, 85);
 	border-radius: 30%;
 	width: 40%;
 	color: white;

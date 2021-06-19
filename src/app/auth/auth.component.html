@@ -36,13 +36,13 @@
 	</StackLayout>
 
 	<StackLayout class="input-field">
-		<Button class="btn btn-flat"  [text] ="isLogin ? 'Login' : 'Signup'"
+		<Button class="btn-flat"  [text] ="isLogin ? 'Login' : 'Signup'"
 		 (tap)="onModeChange()"></Button>
 	</StackLayout>
 
 	<!-- (tap)="onSubmit(userId.value,pwd.value)"> -->
 	<StackLayout class="input-field">
-		<Button class="btn btn-primary"  [text] ="isLogin ? 'Login' : 'Signup'"
+		<Button class="btn"  [text] ="isLogin ? 'Login' : 'Signup'"
 		 [isEnabled]="form.valid"
 		 (tap)="onSubmit()" *ngIf="!isLoading"></Button>
 	</StackLayout>
