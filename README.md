@@ -1,32 +1,39 @@
 # FirstAngularNativeScriptProject
-FirstAngular NativeScript Project  build for learning mobile apps
+FirstAngular NativeScript Project  build for learning mobile app
 
-#keystore password
-ngnschallenge
+# Generate apk file
+ns build android
 
-#generate apk file
-ns build android 
-
-#run in USBconnected device
+# Run in USBconnected device
 ns run android --bundle
+
 ns run ios --bundle
 
-#prepare platform
+# Platform
+## Prepare platform
 ns prepare android
+
 ns prepare ios
 
-#remove platform
+## Remove platform
 ns platform remove android
+
 ns platform remove ios
 
-#add platform
+## Add platform
 ns platform add android
+
 ns platform add ios
 
-#keystore generate
+# Keystore
+
+## Existing keystore password
+ngnschallenge
+
+## New keystore generate
 keytool -genkey -v -keystore ng-ns-challenge.keystore -alias ng-ns-challenge -keyalg RSA -keysize 2048 -validity 10000
 
-#release app-release.apk
+# Release app-release.apk
 ns build android --release --key-store-path ng-ns-challenge.keystore --key-store-password ngnschallenge --key-store-alias ng-ns-challenge --key-store-alias-password ngnschallenge
 
 
